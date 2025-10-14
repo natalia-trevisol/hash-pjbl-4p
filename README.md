@@ -67,52 +67,52 @@ Essas funções foram escolhidas por sua simplicidade e eficiência para chaves 
    ```bash
    javac Experimentos.java GeradorDados.java Registro.java TabelaHashEncadeada.java TabelaHashDuplo.java TabelaHashQuadratico.java
    ```
-Isso gera os arquivos .class necessários para rodar o programa.
+  Isso gera os arquivos .class necessários para rodar o programa.
 
 2. **Executar os experimentos**
 
-Para rodar com grandes volumes de dados (1M ou 10M registros), aumente a memória disponível se necessário:
-```bash
-java -Xmx8g Experimentos
-```
-O programa irá gerar no terminal:
-- Tempo de inserção e busca (em ms)
-- Número de colisões
-- Top 3 buckets (para encadeamento)
-- Estatísticas de gaps
+  Para rodar com grandes volumes de dados (1M ou 10M registros), aumente a memória disponível se necessário:
+  ```bash
+  java -Xmx8g Experimentos
+  ```
+  O programa irá gerar no terminal:
+  - Tempo de inserção e busca (em ms)
+  - Número de colisões
+  - Top 3 buckets (para encadeamento)
+  - Estatísticas de gaps
 
-Exemplo de saída esperada:
+  Exemplo de saída esperada:
+  ```bash
+  === Encadeado: vetor=10000 itens=100000
+  Insert(ms): 12  Search(ms): 8  Collisions: 452344
+  Top3 buckets: 12, 12, 12
+  Gaps: nenhum gap (ou tabela vazia)
+  ```
 
-=== Encadeado: vetor=10000 itens=100000
-Insert(ms): 12  Search(ms): 8  Collisions: 452344
-Top3 buckets: 12, 12, 12
-Gaps: nenhum gap (ou tabela vazia)
+3. Gerar gráficos
+
+  Modifique o código Java para exportar os resultados para .csv (uma linha por teste, com tempo, colisões e tamanho do vetor).
+  
+  Use o script Python gerar_graficos.py para criar gráficos de:
+  
+  Tempo de inserção vs tamanho do vetor
+  
+  Tempo de busca vs tamanho do vetor
+  
+  Número de colisões vs tamanho do vetor (recomenda-se escala logarítmica)
+  
+  Comparativo geral das três técnicas
+  
+  Os gráficos serão salvos em results/graphs/.
 
 
-Gerar gráficos
-
-Modifique o código Java para exportar os resultados para .csv (uma linha por teste, com tempo, colisões e tamanho do vetor).
-
-Use o script Python gerar_graficos.py para criar gráficos de:
-
-Tempo de inserção vs tamanho do vetor
-
-Tempo de busca vs tamanho do vetor
-
-Número de colisões vs tamanho do vetor (recomenda-se escala logarítmica)
-
-Comparativo geral das três técnicas
-
-Os gráficos serão salvos em results/graphs/.
-
-
-**Dicas e recomendações**
-
-Para conjuntos muito grandes, ajuste a memória com -Xmx (ex.: -Xmx8g)
-
-A seed utilizada garante reprodutibilidade dos dados
-
-Para análises rápidas, você pode reduzir os tamanhos dos vetores e dados no main() de Experimentos.java
+4. **Dicas e recomendações**
+  
+  Para conjuntos muito grandes, ajuste a memória com -Xmx (ex.: -Xmx8g)
+  
+  A seed utilizada garante reprodutibilidade dos dados
+  
+  Para análises rápidas, você pode reduzir os tamanhos dos vetores e dados no main() de Experimentos.java
 
 ---
 
