@@ -162,10 +162,3 @@ O Encadeamento Separado é mais robusto e escalável para casos de alta carga (m
 O Hash Duplo, embora interessante teoricamente, apresentou os piores tempos práticos neste conjunto de experimentos.
 
 Para aplicações reais, recomenda-se manter o fator de carga menor ou igual a 0,7 e considerar técnicas híbridas, como encadeamento com redimensionamento dinâmico, que unem desempenho estável e uso eficiente de memória.
-
-## 6. Gráficos sugeridos
-1. **Tempo de inserção vs tamanho do vetor** (um gráfico para cada técnica).  
-2. **Tempo de busca vs tamanho do vetor**.  
-3. **Número de colisões vs tamanho do vetor** (log scale recomendado).  
-4. **Comparativo geral** das três técnicas para o mesmo conjunto de dados.
-
