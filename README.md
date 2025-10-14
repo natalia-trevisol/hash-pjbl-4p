@@ -51,9 +51,74 @@ Essas funções foram escolhidas por sua simplicidade e eficiência para chaves 
 
 ---
 
-## 3. Resultados
+## 3. Como rodar o projeto
 
-### 3.1. Conjunto de 100.000 elementos
+### Requisitos
+- Java 17+  
+- IDE como IntelliJ IDEA ou Eclipse (opcional)  
+- Memória suficiente para grandes volumes de dados (1M ou 10M registros)  
+- Python (opcional) ou qualquer ferramenta de planilha para gerar gráficos
+
+
+### Passos para executar
+
+1. **Compilar o código Java**  
+   No terminal, dentro da pasta `src` ou `java`:
+   ```bash
+   javac Experimentos.java GeradorDados.java Registro.java TabelaHashEncadeada.java TabelaHashDuplo.java TabelaHashQuadratico.java
+   ```
+Isso gera os arquivos .class necessários para rodar o programa.
+
+2. **Executar os experimentos**
+
+Para rodar com grandes volumes de dados (1M ou 10M registros), aumente a memória disponível se necessário:
+```bash
+java -Xmx8g Experimentos
+```
+O programa irá gerar no terminal:
+- Tempo de inserção e busca (em ms)
+- Número de colisões
+- Top 3 buckets (para encadeamento)
+- Estatísticas de gaps
+
+Exemplo de saída esperada:
+
+=== Encadeado: vetor=10000 itens=100000
+Insert(ms): 12  Search(ms): 8  Collisions: 452344
+Top3 buckets: 12, 12, 12
+Gaps: nenhum gap (ou tabela vazia)
+
+
+Gerar gráficos
+
+Modifique o código Java para exportar os resultados para .csv (uma linha por teste, com tempo, colisões e tamanho do vetor).
+
+Use o script Python gerar_graficos.py para criar gráficos de:
+
+Tempo de inserção vs tamanho do vetor
+
+Tempo de busca vs tamanho do vetor
+
+Número de colisões vs tamanho do vetor (recomenda-se escala logarítmica)
+
+Comparativo geral das três técnicas
+
+Os gráficos serão salvos em results/graphs/.
+
+
+**Dicas e recomendações**
+
+Para conjuntos muito grandes, ajuste a memória com -Xmx (ex.: -Xmx8g)
+
+A seed utilizada garante reprodutibilidade dos dados
+
+Para análises rápidas, você pode reduzir os tamanhos dos vetores e dados no main() de Experimentos.java
+
+---
+
+## 4. Resultados
+
+### 4.1. Conjunto de 100.000 elementos
 
 | Implementação | Tamanho do Vetor | Tempo de Inserção (ms) | Tempo de Busca (ms) | Colisões | Top 3 Buckets | Gaps                         |
 | ------------- | ---------------- | ---------------------- | ------------------- | -------- | ------------- | ---------------------------- |
@@ -69,7 +134,7 @@ Essas funções foram escolhidas por sua simplicidade e eficiência para chaves 
 
 ---
 
-### 3.2. Conjunto de 1.000.000 elementos
+### 4.2. Conjunto de 1.000.000 elementos
 
 | Implementação | Tamanho do Vetor | Tempo de Inserção (ms) | Tempo de Busca (ms) | Colisões   | Top 3 Buckets | Gaps                        |
 | ------------- | ---------------- | ---------------------- | ------------------- | ---------- | ------------- | --------------------------- |
@@ -85,7 +150,7 @@ Essas funções foram escolhidas por sua simplicidade e eficiência para chaves 
 
 ---
 
-### 3.3. Conjunto de 10.000.000 elementos
+### 4.3. Conjunto de 10.000.000 elementos
 
 | Implementação | Tamanho do Vetor | Tempo de Inserção (ms) | Tempo de Busca (ms) | Colisões      | Top 3 Buckets    | Gaps       |
 | ------------- | ---------------- | ---------------------- | ------------------- | ------------- | ---------------- | ---------- |
@@ -101,37 +166,37 @@ Essas funções foram escolhidas por sua simplicidade e eficiência para chaves 
 
 ---
 
-## 4. Resultados Gráficos
+## 5. Resultados Gráficos
 
-### 4.1 Tempo de Inserção vs Tamanho do Vetor
+### 5.1 Tempo de Inserção vs Tamanho do Vetor
 ![Tempo de Inserção](results/graficos/tempo_insercao.png)
 
-### 4.2 Tempo de Busca vs Tamanho do Vetor
+### 5.2 Tempo de Busca vs Tamanho do Vetor
 ![Tempo de Busca](results/graficos/tempo_busca.png)
 
-### 4.3 Número de Colisões (Escala Logarítmica)
+### 5.3 Número de Colisões (Escala Logarítmica)
 ![Colisões](results/graficos/colisoes.png)
 
-### 4.4 Comparativo Geral das Técnicas
+### 5.4 Comparativo Geral das Técnicas
 ![Comparativo Geral](results/graficos/comparativo_geral.png)
 
 ---
 
-## 5. Análise dos Resultados
+## 6. Análise dos Resultados
 
-### 5.1 Encadeamento
+### 6.1 Encadeamento
 - Excelente desempenho quando o tamanho da tabela é grande em relação ao número de elementos (ex.: vetor = 1.000.000, dados = 10.000.000).  
 - Sofre com **altas colisões** quando o vetor é pequeno, gerando listas encadeadas longas.
 
-### 5.2 Hash Duplo
+### 6.2 Hash Duplo
 - **Evita clusters** (aglomerados) melhor que sondagem linear, mas é sensível ao fator de carga.  
 - Para vetores grandes, o desempenho degrada com o aumento de colisões (principalmente em 10 milhões).
 
-### 5.3 Sondagem Quadrática
+### 6.3 Sondagem Quadrática
 - Geralmente mais rápida que hash duplo, mas também sofre se o vetor não for proporcionalmente grande.  
 - Apresentou **menos colisões e tempos menores** que o hash duplo na maioria dos casos.
 
-### 5.4 Comparativo Geral
+### 6.4 Comparativo Geral
 
 - **Para 100.000 elementos:** todas as abordagens tiveram tempos baixos, mostrando boa eficiência geral.  
 - **Para 1.000.000 elementos:** o encadeamento manteve bom desempenho; sondagem quadrática começou a se destacar.  
@@ -142,7 +207,7 @@ Quando `n` (elementos) se aproxima do tamanho do vetor, a probabilidade de colis
 
 ---
 
-## 6. Conclusões
+## 7. Conclusões
 A análise comparativa das três implementações mostra que o desempenho das tabelas hash está fortemente relacionado ao fator de carga e à estratégia de resolução de colisões escolhida. Com base nos experimentos realizados com diferentes volumes de dados e tamanhos de vetores, observou-se que:
 
 - **Encadeamento separado** apresentou o comportamento mais estável e previsível, mantendo tempos baixos de inserção e busca mesmo com grandes volumes de dados.
