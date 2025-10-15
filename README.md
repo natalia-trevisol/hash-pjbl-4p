@@ -59,21 +59,44 @@ Essas funções foram escolhidas por sua simplicidade e eficiência para chaves 
 - Memória suficiente para grandes volumes de dados (1M ou 10M registros)  
 - Python (opcional) ou qualquer ferramenta de planilha para gerar gráficos
 
+### Estrutura do projeto 
+src/
+ └─ jav/
+     ├─ clean/       # código sem comentários detalhados
+     └─ commented/   # código com comentários explicativos
+
 
 ### Passos para executar
 
-1. **Compilar o código Java**  
-   No terminal, dentro da pasta `src` ou `java`:
-   ```bash
-   javac Experimentos.java GeradorDados.java Registro.java TabelaHashEncadeada.java TabelaHashDuplo.java TabelaHashQuadratico.java
-   ```
-  Isso gera os arquivos .class necessários para rodar o programa.
+1. **Compilar o código Java**
+  No terminal, dentro da pasta raiz do projeto:
+  
+  Para a versão clean:
+  ```bash
+  javac -d out src/jav/clean/*.java
+  ```
+
+  Para a versão commented:
+  ``` bash
+  javac -d out src/jav/commented/*.java
+  ```
+  
+  Isso cria a pasta out/ com os arquivos .class organizados pelos pacotes (jav.clean ou jav.commented).
 
 2. **Executar os experimentos**
+  Para clean:
+  ```bash
+  java -cp out jav.clean.Experimentos
+  ```
+
+  Para commented:
+  ```bash
+  java -cp out jav.commented.Experimentos
+  ```
 
   Para rodar com grandes volumes de dados (1M ou 10M registros), aumente a memória disponível se necessário:
   ```bash
-  java -Xmx8g Experimentos
+  java -Xmx8g -cp out jav.clean.Experimentos
   ```
   O programa irá gerar no terminal:
   - Tempo de inserção e busca (em ms)
@@ -91,21 +114,19 @@ Essas funções foram escolhidas por sua simplicidade e eficiência para chaves 
 
 3. Gerar gráficos
 
-  Modifique o código Java para exportar os resultados para .csv (uma linha por teste, com tempo, colisões e tamanho do vetor).
+  - Copie os resultados do terminal.
   
-  Use o script Python gerar_graficos.py para criar gráficos de:
-  
-  Tempo de inserção vs tamanho do vetor
-  
-  Tempo de busca vs tamanho do vetor
-  
-  Número de colisões vs tamanho do vetor (recomenda-se escala logarítmica)
-  
-  Comparativo geral das três técnicas
-  
-  Os gráficos serão salvos em results/graphs/.
+  - Abra o script Python graficos.py.
 
+  - Atualize as variáveis do script com os valores medidos nos testes (tempo de inserção, busca, colisões).
 
+  Execute o script:
+  ```bash
+  python graficos.py
+  ```
+
+  Os gráficos serão gerados na tela e podem ser salvos manualmente em results/graficos/.
+  
 4. **Dicas e recomendações**
   
   Para conjuntos muito grandes, ajuste a memória com -Xmx (ex.: -Xmx8g)
