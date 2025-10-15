@@ -60,6 +60,7 @@ Essas funções foram escolhidas por sua simplicidade e eficiência para chaves 
 - Python (opcional) ou qualquer ferramenta de planilha para gerar gráficos
 
 ### Estrutura do projeto 
+```bash
 src/
   └─ jav/
       ├─ clean/
@@ -70,6 +71,7 @@ src/
            ├─ Experimentos.java
            ├─ GeradorDados.java
            └─ ...
+```
 
 ### Passos para executar
 
