@@ -39,8 +39,7 @@ Os tamanhos permitem:
 - 100.000 posições → avaliar desempenho em cenário intermediário, equilibrando memória e número de colisões.
 - 1.000.000 posições → testar a escalabilidade das funções hash e rehash com grandes volumes de dados, garantindo que o programa rode corretamente e que os resultados sejam confiáveis.
 
-A escolha dos tamanhos atende a exigência de variação mínima de 10 vezes entre os vetores, conforme as instruções do trabalho, garantindo escalabilidade suficiente para observar o comportamento das funções hash em diferentes níveis de carga.
-Além disso, tamanhos menores (como 1.000 ou 5.000) não puderam ser utilizados na prática, pois a execução com grandes conjuntos de dados (100.000 a 10.000.000 registros) excedia a capacidade de memória da máquina utilizada, tornando os experimentos inviáveis.
+A escolha dos tamanhos atende a exigência de variação mínima de 10 vezes entre os vetores, garantindo escalabilidade suficiente para observar o comportamento das funções hash em diferentes níveis de carga. Além disso, tamanhos menores (como 1.000 ou 5.000) não puderam ser utilizados na prática, pois a execução com grandes conjuntos de dados (100.000 a 10.000.000 registros) excedia a capacidade de memória da máquina utilizada, tornando os experimentos inviáveis.
 
 
 ### 2.2 Funções de Hash Utilizadas
