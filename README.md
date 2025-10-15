@@ -102,6 +102,7 @@ src/
   Isso cria a pasta out/ com os arquivos .class organizados pelos pacotes (jav.clean ou jav.commented).
 
 2. **Executar os experimentos**
+   
   Para clean:
   ```bash
   java -cp out jav.clean.Experimentos
@@ -130,7 +131,7 @@ src/
   Gaps: nenhum gap (ou tabela vazia)
   ```
 
-3. Gerar gráficos
+3. **Gerar gráficos**
 
   - Copie os resultados do terminal.
   
