@@ -30,24 +30,35 @@ Os testes foram realizados em um notebook com processador Intel Core i3, 8 GB de
 | Tamanhos dos vetores | 10.000, 100.000, 1.000.000 |
 | Seed aleatória | `12345` (fixa para garantir comparabilidade) |
 | Tempo medido em | milissegundos |
-| Métricas analisadas | Tempo de inserção, tempo de busca, número de colisões, 3 maiores listas encadeadas geradas, gaps entre elementos no vetor |
+| Métricas analisadas | Tempo de inserção, tempo de busca, número de colisões, 3 maiores listas encadeadas geradas, gaps entre elementos do vetor |
 
-### 2.1 Funções de Hash Utilizadas
+### 2.1 Escolha dos Tamanhos dos Vetores
+
+Os tamanhos permitem:
+- 10.000 posições → analisar colisões e desempenho em uma tabela relativamente pequena, mas que ainda cabe na memória.
+- 100.000 posições → avaliar desempenho em cenário intermediário, equilibrando memória e número de colisões.
+- 1.000.000 posições → testar a escalabilidade das funções hash e rehash com grandes volumes de dados, garantindo que o programa rode corretamente e que os resultados sejam confiáveis.
+
+A escolha dos tamanhos atende a exigência de variação mínima de 10 vezes entre os vetores, conforme as instruções do trabalho, garantindo escalabilidade suficiente para observar o comportamento das funções hash em diferentes níveis de carga.
+Além disso, tamanhos menores (como 1.000 ou 5.000) não puderam ser utilizados na prática, pois a execução com grandes conjuntos de dados (100.000 a 10.000.000 registros) excedia a capacidade de memória da máquina utilizada, tornando os experimentos inviáveis.
+
+
+### 2.2 Funções de Hash Utilizadas
 Para garantir a reprodutibilidade dos resultados, as funções de hash foram definidas conforme a técnica implementada:
 
-- **Encadeamento separado:**  
+- **Tabela Hash com Encadeamento Separado:** utiliza listas encadeadas para tratar colisões, com função de hash baseada em divisão simples.
   `hash = key % tamanhoVetor`
 
-- **Hash Duplo:**  
+- **Tabela Hash com Rehashing Duplo:** utiliza duas funções de hash independentes.  
   `hash1 = key % tamanhoVetor`  
   `hash2 = 7 - (key % 7)`  
   A posição final é calculada como:  
   `(hash1 + i * hash2) % tamanhoVetor`, onde *i* é o número de tentativas.
 
-- **Sondagem Quadrática:**  
+- **Tabela Hash com Sondagem Quadrática:** aplica rehashing incremental baseado no quadrado do deslocamento.  
   `hash = (key + i²) % tamanhoVetor`, onde *i* é incrementado a cada colisão.
 
-Essas funções foram escolhidas por sua simplicidade e eficiência para chaves numéricas sequenciais.
+As três funções de hash foram escolhidas por sua simplicidade e eficiência em chaves numéricas sequenciais, e foram testadas com os mesmos conjuntos de dados (gerados com a mesma seed) para garantir reprodutibilidade e comparação justa de desempenho.
 
 ---
 
