@@ -62,11 +62,14 @@ Essas funções foram escolhidas por sua simplicidade e eficiência para chaves 
 ### Estrutura do projeto 
 src/
   └─ jav/
-
-     ├─ clean/       # código sem comentários detalhados
-     
-     └─ commented/   # código com comentários explicativos
-
+      ├─ clean/
+      │    ├─ Experimentos.java
+      │    ├─ GeradorDados.java
+      │    └─ ...
+      └─ commented/
+           ├─ Experimentos.java
+           ├─ GeradorDados.java
+           └─ ...
 
 ### Passos para executar
 
