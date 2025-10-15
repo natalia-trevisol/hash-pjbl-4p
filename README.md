@@ -71,6 +71,7 @@ src/
            ├─ Experimentos.java
            ├─ GeradorDados.java
            └─ ...
+   └─ python/          # script Python para gerar gráficos 
 ```
 
 ### Passos para executar
